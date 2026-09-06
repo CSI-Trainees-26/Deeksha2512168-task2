@@ -1,0 +1,154 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: white;
+}
+
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 100vh;
+    background: whitesmoke;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 70px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: black;
+}
+
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 220px;
+    width: calc(100% - 220px);
+    height: 85px;
+    padding: 20px 40px;
+    background: white;
+    z-index: 1000;
+}
+
+.main-content {
+    margin-left: 220px;
+    padding-top: 115px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    min-height: 100vh;
+    background: white;
+}
+
+
+.today-task {
+    background: #B5BAFF;
+    padding: 20px;
+    margin-bottom: 30px;
+    max-width:700px;
+    min-height: 170px;
+    border-radius: 20px;
+    flex:7;
+
+}
+
+.today-task p{
+    margin-top: 20px;
+    color: blueviolet;
+    font-size: large;
+
+}
+
+.today-task button{
+   margin-top: 30px;
+   width: 200px;
+   height:40px ;
+   background-color: blueviolet;
+   border-radius: 10px;
+   border: none;
+   color: white;             
+   font-family: Arial, sans-serif;  
+   font-size: 18px;         
+   font-weight: bold; 
+}
+
+.cards{
+ display: flex;
+ height: 200px;
+ width: 100%;
+}
+
+.task1{
+ background: whitesmoke;
+ padding: 15px;
+ flex: 1;
+ border-radius: 20px;
+ margin-right: 20px;
+}
+
+.task2{
+ background: whitesmoke;
+ padding: 15px;
+ flex: 1;
+ border-radius: 20px;
+ margin-right: 20px;
+}
+
+.task3{
+ background: whitesmoke;
+ padding: 15px;
+ flex: 1;
+ border-radius: 20px;
+}
+
+.cards2{
+    display: flex;
+}
+
+.graph{
+    background: whitesmoke;
+    width: 50%;
+    margin-top: 20px;
+    border-radius: 15px;
+    height:300px;
+    padding: 10px;
+
+}
+
+.assignments{
+    background: whitesmoke;
+    width: 50%;
+    margin-top: 20px;
+    border-radius: 15px;
+    height:300px;
+    padding: 10px;
+    margin-left: 20px;
+}
+
+.cards-top{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.add-task{
+    background: #B5BAFF;
+    padding: 20px;
+    margin-bottom: 30px;
+    width:290px;
+    min-height: 170px;
+    border-radius: 20px;
+    flex:3;
+}
