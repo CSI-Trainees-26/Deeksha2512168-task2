@@ -1,6 +1,3 @@
-// ===== Daily Task Manager =====
-// Handles: Create, Edit, Delete, Pending list, and Drag & Drop (Pending -> Completed)
-
 document.addEventListener('DOMContentLoaded', () => {
 
     const taskInput = document.getElementById('taskInput');
@@ -12,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const STORAGE_KEY = 'dailyTasks';
 
-    // Load tasks from localStorage, or start with an empty array
     let tasks = loadTasks();
 
     function loadTasks() {
@@ -32,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return 'task-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
     }
 
-    // ===== Render =====
     function render() {
         pendingList.innerHTML = '';
         completedList.innerHTML = '';
@@ -60,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return li;
     }
 
-    // ===== Create a single task <li> element =====
     function createTaskElement(task) {
         const li = document.createElement('li');
         li.className = 'task-item' + (task.status === 'completed' ? ' completed' : '');
@@ -90,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
         li.appendChild(span);
         li.appendChild(actions);
 
-        // Drag events
         li.addEventListener('dragstart', (e) => {
             e.dataTransfer.setData('text/plain', task.id);
             li.classList.add('dragging');
@@ -103,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return li;
     }
 
-    // ===== Create Task =====
     function addTask() {
         const text = taskInput.value.trim();
         if (text === '') return;
@@ -127,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ===== Edit Task =====
     function editTask(id) {
         const task = tasks.find(t => t.id === id);
         if (!task) return;
@@ -142,14 +133,12 @@ document.addEventListener('DOMContentLoaded', () => {
         render();
     }
 
-    // ===== Delete Task =====
     function deleteTask(id) {
         tasks = tasks.filter(t => t.id !== id);
         saveTasks();
         render();
     }
 
-    // ===== Drag & Drop (Pending -> Completed) =====
     [pendingColumn, completedColumn].forEach(column => {
         column.addEventListener('dragover', (e) => {
             e.preventDefault(); // allow drop
@@ -168,15 +157,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const task = tasks.find(t => t.id === taskId);
             if (!task) return;
 
-            const newStatus = column.dataset.status; // "pending" or "completed"
+            const newStatus = column.dataset.status; 
 
-            // Task status should become the column it was dropped into
             task.status = newStatus;
             saveTasks();
             render();
         });
     });
 
-    // Initial render on page load
     render();
 });
