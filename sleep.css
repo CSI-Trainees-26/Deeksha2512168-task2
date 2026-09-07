@@ -40,6 +40,7 @@ body {
     padding: 20px 40px;
     background: white;
     z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .main-content {
@@ -111,5 +112,90 @@ body {
     flex-direction:row;
     gap: 150px;
     margin-top: 30px;
+    
 
+}
+
+.details, .trends, .quality, .metrices {
+    color: white;
+}
+
+.option-tab {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.option-tab.active {
+    opacity: 1;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.sleep-log, .sleep-target {
+    margin-top: 25px;
+}
+
+.sleep-log label, .sleep-target label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.sleep-log-inputs, .sleep-target-inputs {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.sleep-log-inputs input, .sleep-target-inputs input {
+    width: 70px;
+    height: 35px;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.sleep-log-inputs button, .sleep-target-inputs button {
+    height: 35px;
+    padding: 0 15px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: #696FC7;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sleep-log-inputs button:hover, .sleep-target-inputs button:hover {
+    opacity: 0.85;
+}
+
+#todaySleepDisplay, #targetDisplay {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.chart-container {
+    margin-top: 15px;
+    width: 100%;
+    height: 260px;
+}
+
+#sleepChartCanvas {
+    width: 100%;
+    height: 100%;
+}
+
+.quality.good h1:nth-of-type(2) {
+    color: #b6ffb6;
+}
+
+.quality.bad h1:nth-of-type(2) {
+    color: #ffb6b6;
+}
+
+.metrices p {
+    display: flex;
+    justify-content: space-between;
 }

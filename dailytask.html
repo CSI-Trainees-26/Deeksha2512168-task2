@@ -1,0 +1,171 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="dailytask.css">
+</head>
+<body>
+      <header class="top-header">
+       <h2>Hello,Deeksha!</h2>
+       <p>Let's finish your task today!</p>
+     </header>
+
+
+    <div class="task-manager">
+
+        <aside class="sidebar">
+
+         <nav class="nav">
+           <div class="logo">
+             <h1>Habit Tracker</h1>
+             <p>Better Habit , Better YOU</p>
+           </div>
+            <a href="index.html">Dashboard</a>
+            <a href="daily task.html">Daily Tasks</a>
+            <a href="#">Habit Tracker</a>
+            <a href="water.html">Water Tracker</a>
+            <a href="sleep.html">Sleep Tracker</a>
+            <a href="timer.html">Pomodoro Timer</a>
+            <a href="#">Profile</a>
+         </nav>
+       </aside>
+
+       <main class="main-content">
+
+          <div class="cards-top">
+
+           <section class="today-task">
+             <h1>Today Task</h1>
+             <p> Check your daily tasks and schedule</p>
+             <button id="addscheduleButton">Today's Schedule</button>
+           </section>
+
+           <div class="add-task">
+            <h2> Update your task</h2>
+
+            <input type="text" id="taskInput" placeholder="Enter a task">
+
+           <button id="addTaskBtn">Add Task</button>
+
+           </div>
+
+          </div>
+
+          <div class="cards" id="taskContainer">
+
+          </div>
+
+          <div class="cards2">
+
+            <div class="graph">
+              <h2> Tasks Progress</h2>
+            </div>
+
+           <div class="assignments">
+             <h2>Assignments</h2>
+           </div>
+
+          </div>
+
+
+
+       </main>
+        
+
+    </div>
+     <script src="dailytask.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="dailytask.css">
+</head>
+<body>
+      <header class="top-header">
+       <h2>Hello,Deeksha!</h2>
+       <p>Let's finish your task today!</p>
+     </header>
+
+
+    <div class="task-manager">
+
+        <aside class="sidebar">
+
+         <nav class="nav">
+           <div class="logo">
+             <h1>Habit Tracker</h1>
+             <p>Better Habit , Better YOU</p>
+           </div>
+            <a href="index.html">Dashboard</a>
+            <a href="daily task.html">Daily Tasks</a>
+            <a href="#">Habit Tracker</a>
+            <a href="water.html">Water Tracker</a>
+            <a href="sleep.html">Sleep Tracker</a>
+            <a href="timer.html">Pomodoro Timer</a>
+            <a href="#">Profile</a>
+         </nav>
+       </aside>
+
+       <main class="main-content">
+
+          <div class="cards-top">
+
+           <section class="today-task">
+             <h1>Today Task</h1>
+             <p> Check your daily tasks and schedule</p>
+             <button id="addscheduleButton">Today's Schedule</button>
+           </section>
+
+           <div class="add-task">
+            <h2> Update your task</h2>
+
+            <input type="text" id="taskInput" placeholder="Enter a task">
+
+           <button id="addTaskBtn">Add Task</button>
+
+           </div>
+
+          </div>
+
+          <div class="cards" id="taskContainer">
+
+            <div class="task-card" id="pendingColumn" data-status="pending">
+              <h2>Pending Tasks</h2>
+              <ul class="task-list" id="pendingList"></ul>
+            </div>
+
+            <div class="task-card" id="completedColumn" data-status="completed">
+              <h2>Completed Tasks</h2>
+              <ul class="task-list" id="completedList"></ul>
+            </div>
+
+          </div>
+
+          <div class="cards2">
+
+            <div class="graph">
+              <h2> Tasks Progress</h2>
+            </div>
+
+           <div class="assignments">
+             <h2>Assignments</h2>
+           </div>
+
+          </div>
+
+
+
+       </main>
+        
+
+    </div>
+     <script src="dailytask.js"></script>
+</body>
+</html>

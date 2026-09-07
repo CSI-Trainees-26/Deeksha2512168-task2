@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <titlet>Habit Tracker</title>
+    <title>Habit Tracker</title>
         <link rel="stylesheet" href="water.css">
 </head>
 <body>
-    <script src="script.js"></script>
 
     <header class="top-header">
        <h2>Hello,Deeksha!</h2>
@@ -23,7 +22,7 @@
              <p>Better Habit , Better YOU</p>
            </div>
             <a href="index.html">Dashboard</a>
-            <a href="daily task.html">Daily Tasks</a>
+            <a href="dailytask.html">Daily Tasks</a>
             <a href="#">Habit Tracker</a>
             <a href="water.html">Water Tracker</a>
             <a href="sleep.html">Sleep Tracker</a>
@@ -38,14 +37,14 @@
 
           <div class="intake">
             <h1>Today's Intake</h1>
-            <h1>0</h1>
-            <p>5L</p>
+            <h1 id="todayIntakeValue">0</h1>
+            <p id="goalText">of 5L</p>
           </div>
 
           <div class="add">
-            <h1>Add today's goal</h1>
-            <button>250ml</button>
-            <button>500ml</button>
+            <h1>Add today's intake</h1>
+            <button id="add250Btn">250ml</button>
+            <button id="add500Btn">500ml</button>
           </div>
 
         </div>
@@ -54,14 +53,22 @@
 
             <div class="week">
                 <h1>Weekly Intake</h1>
+                <div class="chart-container">
+                    <canvas id="weekChartCanvas"></canvas>
+                </div>
             </div>
 
             <div class="month">
                 <h1>Monthly Intake</h1>
+                <div class="chart-container">
+                    <canvas id="monthChartCanvas"></canvas>
+                </div>
             </div>
         </div>
        </main>
 
     </div>
+
+    <script src="water.js"></script>
 </body>
 </html>
