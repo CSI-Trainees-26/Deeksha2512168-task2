@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family:Arial, sans-serifs;
+    background: white;
+}
+
+.dashboard{
+    display: flex;
+}
+
+.sidebar{
+    width: 220px;
+    min-height: 99vh;
+    background: whitesmoke;
+    top: 0;
+    height: 0;
+    position: fixed;
+}
+
+.main-content {
+    flex: 1;  
+    padding: 30px;
+    background: white;
+    margin-left:220px ;
+    padding-top: 115px;
+}
+
+.logo-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.pfp-logo1 {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    width: 52px;
+    height: 32px;
+}
+
+.pfp-logo1 img {
+    width: 1000px;
+    height: 60px;
+    object-fit: cover;
+    margin-left: -40px;
+}
+
+.top-header p{
+    margin-left: 20px;
+}
+
+.nav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:70px ;
+  
+}
+
+.top-header{
+   top: 0;
+   left: 220px;
+   width: calc(100% - 220px);
+   height: 85px;
+   padding: 20px 40px;
+   position: fixed;
+   background: white;
+   border-bottom: 2px solid #E5E5F5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.sidebar a{
+    text-decoration: none;
+    color: black;
+    
+}
+.date{
+    background: whitesmoke;
+    width: 100%;
+    height: 200px;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 25px;
+
+}

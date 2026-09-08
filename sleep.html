@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,10 @@
     <script src="script.js"></script>
 
     <header class="top-header">
-       <h2>Hello,Deeksha!</h2>
+       <div class="pfp-logo1">
+        <img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg" alt="profile logo" class="logo-icon">
+        <h2>Hello,Deeksha!</h2>
+       </div>
        <p>A good day starts with a good night sleep!</p>
     </header>
 
@@ -19,16 +22,19 @@
 
          <nav class="nav">
            <div class="logo">
-             <h1>Habit Tracker</h1>
+             <div class="logo-top">
+                <img src="https://healthicons.org/icons/svg/outline/devices/blood-pressure.svg" alt="health tracker logo" class="logo-icon">
+              <h1>Health Tracker</h1>
+             </div>
              <p>Better Habit , Better YOU</p>
            </div>
-            <a href="index.html">Dashboard</a>
-            <a href="dailytask.html">Daily Tasks</a>
-            <a href="#">Habit Tracker</a>
-            <a href="water.html">Water Tracker</a>
-            <a href="sleep.html">Sleep Tracker</a>
-            <a href="timer.html">Pomodoro Timer</a>
-            <a href="#">Profile</a>
+             <a href="index.html"><img src="https://static.vecteezy.com/system/resources/previews/012/528/164/non_2x/home-icon-house-icon-illustration-perfect-for-all-project-vector.jpg" alt="dash-icon" class="nav-icon">Dashboard</a>
+            <a href="dailytask.html"> <img src="https://cdn-icons-png.flaticon.com/512/233/233146.png" alt="dash-icon" class="nav-icon">Daily Tasks</a>
+            <a href="habit.html"><img src="https://www.shutterstock.com/image-vector/habit-icon-represented-by-man-600w-2609209517.jpg" alt="dash-icon" class="nav-icon"Habit Tracker>Habit Tracker</a>
+            <a href="water.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd_y28CZEuK7GG6_nCud89lVbDU_O0y0yazrbPSp1q4wLCOpWqDplcfvBm&s=10" alt="dash-icon" class="nav-icon"Habit Tracker>Water Tracker</a>
+            <a href="sleep.html"><img src="https://media.istockphoto.com/id/1142805287/vector/man-sleeping-on-bed.jpg?s=612x612&w=0&k=20&c=Hu2BpHdt2AokYEKV9ipExTUT8AMvImjayo1Tuy5nISs=" alt="dash-icon" class="nav-icon"Habit Tracker>Sleep Tracker</a>
+            <a href="timer.html"><img src="https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/all-icons/timer-xizuqis1c1bft3afx5g9g.png/timer-417zrzd2bpc0rtyd5pzkjlg.png?_a=DATAiZAAZAA0" alt="dash-icon" class="nav-icon"Habit Tracker>Pomodoro Timer</a>
+            <a href="#"><img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" alt="dash-icon" class="nav-icon">Profile</a>
          </nav>
        </aside>
 
@@ -70,100 +76,6 @@
     </div>
 
 </body>
-</html> -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Health Tracker</title>
-    <link rel="stylesheet" href="sleep.css">
-</head>
-<body>
-
-    <header class="top-header">
-       <h2>Hello,Deeksha!</h2>
-       <p>A good day starts with a good night sleep!</p>
-    </header>
-
-    <div class="sleep-track">
-        <aside class="sidebar">
-
-         <nav class="nav">
-           <div class="logo">
-             <h1>Habit Tracker</h1>
-             <p>Better Habit , Better YOU</p>
-           </div>
-            <a href="index.html">Dashboard</a>
-            <a href="dailytask.html">Daily Tasks</a>
-            <a href="#">Habit Tracker</a>
-            <a href="water.html">Water Tracker</a>
-            <a href="sleep.html">Sleep Tracker</a>
-            <a href="timer.html">Pomodoro Timer</a>
-            <a href="#">Profile</a>
-         </nav>
-       </aside>
-
-       <main class="main-content">
-
-        <div class="cards-top">
-
-            <div class="details">
-                <h1> Sleep Details</h1>
-
-                <div class="sleep-log">
-                    <label for="sleepHours">Hours slept last night</label>
-                    <div class="sleep-log-inputs">
-                        <input type="number" id="sleepHours" min="0" max="24" placeholder="Hrs">
-                        <input type="number" id="sleepMinutes" min="0" max="59" placeholder="Min">
-                        <button id="logSleepBtn">Log Sleep</button>
-                    </div>
-                    <p id="todaySleepDisplay">No sleep logged for today yet</p>
-                </div>
-
-                <div class="sleep-target">
-                    <label for="targetHours">Set your sleep target (hours)</label>
-                    <div class="sleep-target-inputs">
-                        <input type="number" id="targetHours" min="0" max="24" placeholder="e.g. 8">
-                        <button id="setTargetBtn">Set Target</button>
-                    </div>
-                    <p id="targetDisplay">No target set yet</p>
-                </div>
-            </div>
-
-            <div class="trends">
-                <h1> Sleep Trends</h1>
-                <div class="options">
-                <p class="option-tab active" data-range="week">week</p>
-                <p class="option-tab" data-range="month">months</p>
-                <p class="option-tab" data-range="years">years</p>
-                </div>
-                <div class="chart-container">
-                    <canvas id="sleepChartCanvas"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <div class="cards-bottom">
-
-            <div class="quality">
-                <h1>Sleep Quality</h1>
-                <h1 id="qualityLabel">GOOD</h1>
-                <p id="qualityMsg">Try to go to bed a little earlier for better results</p>
-            </div>
-
-            <div class="metrices">
-                <h1>Sleep Metrices</h1>
-                <p>Avg.sleep score <span id="avgScore">--</span></p>
-                <p>Avg.deep sleep <span id="avgDeepSleep">--</span></p>
-                <p>Avg.efficiency <span id="avgEfficiency">--</span></p>
-                <p>Avg.time in bed <span id="avgTimeInBed">--</span></p>
-            </div>
-        </div>
-       </main>
-    </div>
-
-    <script src="sleep.js"></script>
-</body>
 </html>
+
+

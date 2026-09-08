@@ -26,7 +26,7 @@ body{
     flex: 1;  
     padding: 30px;
     background: white;
-    margin-left:20px ;
+    margin-left:220px ;
     padding-top: 115px;
 }
 
@@ -150,8 +150,8 @@ body{
     height: 160px;
     border-radius: 50%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center; */
+    /* justify-content: center; */
     margin: 20px auto 0;
 }
 
@@ -161,7 +161,7 @@ body{
     height: 120px;
     border-radius: 50%;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
     font-size: 28px;
     font-weight: bold;
@@ -260,3 +260,23 @@ body{
     height: 20px;
     object-fit: contain;
 }
+
+.pfp-logo1 {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    width: 52px;
+    height: 32px;
+}
+
+.pfp-logo1 img {
+    width: 1000px;
+    height: 60px;
+    object-fit: cover;
+    margin-left: -40px;
+}
+
+.top-header p{
+    margin-left: 20px;
+}
+
