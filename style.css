@@ -57,7 +57,7 @@ body{
    position: fixed;
    background: white;
    border-bottom: 2px solid #E5E5F5;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .sidebar a{
@@ -280,3 +280,20 @@ body{
     margin-left: 20px;
 }
 
+.search-logo{
+ position: absolute;
+ top: 30px;
+ right: 130px;
+ width: 35px;
+ height: 35px;
+ object-fit: contain;
+}
+
+.notify{
+ position: absolute;
+ top: 22px;
+ right: 40px;
+ width: 60px;
+ height: 50px;
+ object-fit: contain;
+}

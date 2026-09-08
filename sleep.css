@@ -242,3 +242,27 @@ body {
 .top-header p{
     margin-left: 20px;
 }
+
+.search-logo{
+ position: absolute;
+ top: 30px;
+ right: 130px;
+ width: 35px;
+ height: 35px;
+ object-fit: contain;
+}
+
+.notify{
+ position: absolute;
+ top: 22px;
+ right: 40px;
+ width: 60px;
+ height: 50px;
+ object-fit: contain;
+}
+
+.logo h1{
+ font-size: 25px;
+ margin-bottom: 5px;
+ margin-top: 20px;
+}
