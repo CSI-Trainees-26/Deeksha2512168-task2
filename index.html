@@ -48,8 +48,8 @@
           
             <section class=" progress-report ">
                 <h2> Overall Progress </h2>
-       
-                
+                <p id="taskProgressText">Daily Tasks: 0 completed</p>
+                <p id="habitProgressText">Habits: 0 completed</p>
             </section>
 
             <div class="cards">
@@ -65,16 +65,20 @@
              <div class="right-cards">
 
                  <div class="water-intake">
-                   <h3>💧Water</h3>
+                   <h1>💧Water Intake</h1>
                    <p>Daily Limit- 5L</p>
                    <p id="waterTodayText">0ml consumed today</p>
                    
                  </div>
 
                   <div class="calorie">
-                    <h3>🔥Calorie</h3>
-                    <p id="calorieTodayText">0 kcal today</p>
-                    
+                    <h1>🔥Calorie</h1>
+                    <input type="number"
+                    id="calorieInput"
+                    placeholder="Enter Calories"
+                    >
+                    <button id="calorieBtn">Add</button>
+                    <p id="calorieTodayText">0 calorie today</p>
                   </div>
              </div>
 
@@ -82,17 +86,27 @@
 
             <section class="quotes">
                 <h1> Motivational Quotes</h1>
+                <p id="quoteText"></p>
+
+               <button id="saveQuoteBtn">Save Quote</button>
             </section>
 
             <div class="cards2">
 
                 <div class="sleep">
-                  <h2>Sleep Quality</h2>
+                  <h1>Sleep Quality</h1>
                   <p id="sleepSummaryText">No sleep data yet</p>
                 </div>
 
                 <div class="timer">
-                    <h3> Set Timer</h3>
+                    <h1> Set Timer</h1>
+                    <div id="timerDisplay">00:00</div>
+
+                    <div class="timer-buttons">
+                      <button id="startTimerBtn">Start</button>
+                      <button id="stopTimerBtn">Stop</button>
+                      <button id="resetTimerBtn">Reset</button>
+                    </div>
                 </div>
 
             </div>
@@ -100,7 +114,7 @@
         </main>
     
     </div>
-   
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="index.js"></script>
 </body>
 </html>

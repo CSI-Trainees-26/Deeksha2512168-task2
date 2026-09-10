@@ -45,6 +45,9 @@ body{
     flex-direction: column;
     align-items: center;
     gap:70px ;
+    :hover{
+        background-color: #CFEBFF;
+    }
   
 }
 
@@ -198,43 +201,10 @@ body{
     margin-top: 10px;
 }
 
-.calorie-input {
-    display: flex;
-    gap: 8px;
-    margin-top: 12px;
-}
-
-.calorie-input input {
-    width: 90px;
-    height: 35px;
-    border: none;
-    border-radius: 8px;
-    padding: 5px 10px;
-    font-size: 14px;
-}
-
-.calorie-input button {
-    height: 35px;
-    padding: 0 15px;
-    border: none;
-    border-radius: 8px;
-    background: white;
-    color: #4a8c7c;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.calorie-input button:hover {
-    opacity: 0.85;
-}
-
-#calorieTodayText {
-    margin-top: 10px;
-}
-
 #sleepSummaryText {
-    margin-top: 10px;
+    margin-top: 50px;
     color: white;
+    font-size: larger;
 }
 
 .logo-top {
@@ -296,4 +266,85 @@ body{
  width: 60px;
  height: 50px;
  object-fit: contain;
+}
+
+#calorieInput {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+    margin-top: 12px;
+}
+
+#calorieBtn {
+    height: 35px;
+    padding: 0 15px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+#calorieBtn:hover {
+    opacity: 0.8;
+}
+
+#timerDisplay {
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.timer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.timer-buttons button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.timer-buttons button:hover {
+    opacity: 0.8;
+}
+
+#quoteText {
+    margin-top: 25px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#saveQuoteBtn {
+    margin-top: 20px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+}
+
+.water-intake p{
+    margin-top: 50px;
+    font-size: larger;
+    font-style: oblique;
+}
+
+#calorieBtn{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.calorieTodayText{
+    font-size: larger;
+    font-weight: 700;
 }
