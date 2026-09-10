@@ -53,35 +53,31 @@ body {
     background: white;
 }
 
-.cards-top{
- display: flex;
- height: 400px;
- width: 100%;
-}
-
-.details{
-    background: #696FC7;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 30px;
-    max-width:700px;
-    min-height: 400px;
-    border-radius: 20px;
-    flex:7;
-    margin-right: 20px;
-}
-
-.trends{
-    background: #696FC7;
-    border-radius: 20px;
-    width: 500px;
+.cards-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
     height: 400px;
+}
+
+.details {
+    background: #696FC7;
+    border-radius: 20px;
     padding: 20px;
+    height: 400px;
+}
+
+.trends {
+    background: #696FC7;
+    border-radius: 20px;
+    padding: 20px;
+    height: 400px;
 }
 
 .cards-bottom{
  display: flex;
- height: 200px;
+ height: 300px;
  width: 100%;
 }
 
@@ -91,6 +87,8 @@ body {
     border-radius: 10px;
     padding: 10px;
     width:700px ;
+    height: 250px;
+    margin-bottom: 10px;
 }
 
 .metrices{
@@ -100,6 +98,7 @@ body {
     margin-top: 20px;
     border-radius: 10px;
     padding: 15px;
+    height: 250px;
 }
 
 .metrices p{
@@ -112,8 +111,6 @@ body {
     flex-direction:row;
     gap: 150px;
     margin-top: 30px;
-    
-
 }
 
 .details, .trends, .quality, .metrices {
@@ -131,60 +128,9 @@ body {
     text-decoration: underline;
 }
 
-.sleep-log, .sleep-target {
-    margin-top: 25px;
-}
-
-.sleep-log label, .sleep-target label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 15px;
-}
-
-.sleep-log-inputs, .sleep-target-inputs {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.sleep-log-inputs input, .sleep-target-inputs input {
-    width: 70px;
-    height: 35px;
-    border: none;
-    border-radius: 8px;
-    padding: 5px 10px;
-    font-size: 14px;
-}
-
-.sleep-log-inputs button, .sleep-target-inputs button {
-    height: 35px;
-    padding: 0 15px;
-    border: none;
-    border-radius: 8px;
-    background: white;
-    color: #696FC7;
-    font-weight: bold;
-    cursor: pointer;
-}
 
 .sleep-log-inputs button:hover, .sleep-target-inputs button:hover {
-    opacity: 0.85;
-}
-
-#todaySleepDisplay, #targetDisplay {
-    margin-top: 12px;
-    font-size: 14px;
-}
-
-.chart-container {
-    margin-top: 15px;
-    width: 100%;
-    height: 260px;
-}
-
-#sleepChartCanvas {
-    width: 100%;
-    height: 100%;
+    opacity: 0
 }
 
 .quality.good h1:nth-of-type(2) {
@@ -265,4 +211,60 @@ body {
  font-size: 25px;
  margin-bottom: 5px;
  margin-top: 20px;
+}
+
+#enter{
+    background: whitesmoke;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-radius: 5px;
+    font-size: small;
+}
+
+.set{
+    margin-top: 30px;
+    margin-bottom: 35px;
+}
+
+.set,
+.entering {
+    margin-top: 20px;
+}
+
+.set label,
+.entering label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.set input,
+.entering input {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.set button,
+.entering button {
+    height: 35px;
+    padding: 0 15px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: #696FC7;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.chart-container {
+    width: 100%;
+    height: 260px;
+    margin-top: 15px;
+}
+
+#sleepGraph {
+    width: 100%;
+    height: 100%;
 }

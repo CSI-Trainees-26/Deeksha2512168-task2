@@ -1,286 +1,254 @@
-document.addEventListener('DOMContentLoaded', () => {
+const targetSleep = document.getElementById("targetSleep");
+const actualSleep = document.getElementById("actualSleep");
 
-    const sleepHoursInput = document.getElementById('sleepHours');
-    const sleepMinutesInput = document.getElementById('sleepMinutes');
-    const logSleepBtn = document.getElementById('logSleepBtn');
-    const todaySleepDisplay = document.getElementById('todaySleepDisplay');
+const setTargetBtn = document.getElementById("setTargetBtn");
+const enterSleepBtn = document.getElementById("enterSleepBtn");
 
-    const targetHoursInput = document.getElementById('targetHours');
-    const setTargetBtn = document.getElementById('setTargetBtn');
-    const targetDisplay = document.getElementById('targetDisplay');
+const targetDisplay = document.getElementById("targetDisplay");
+const sleepPercentageDisplay = document.getElementById("sleep-percentage");
 
-    const canvas = document.getElementById('sleepChartCanvas');
-    const ctx = canvas.getContext('2d');
+const sleptHoursDisplay = document.getElementById("slept-hours");
+const remainingHoursDisplay = document.getElementById("remaining-hours");
+const qualityMessage = document.getElementById("quality-message");
 
-    const qualityBox = document.querySelector('.quality');
-    const qualityLabel = document.getElementById('qualityLabel');
-    const qualityMsg = document.getElementById('qualityMsg');
+const sleepGraph = document.getElementById("sleepGraph");
+const ctx = sleepGraph.getContext("2d");
 
-    const avgScoreEl = document.getElementById('avgScore');
-    const avgDeepSleepEl = document.getElementById('avgDeepSleep');
-    const avgEfficiencyEl = document.getElementById('avgEfficiency');
-    const avgTimeInBedEl = document.getElementById('avgTimeInBed');
+let sleepTarget = 0;
+let actualSleepHours = 0;
 
-    const RECORDS_KEY = 'sleepRecords';
-    const TARGET_KEY = 'sleepTarget';
-    const DAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+let weeklySleepData = {};
 
-    const memoryFallback = {};
+let savedSleepData = localStorage.getItem("weeklySleepData");
 
-    function safeGetItem(key) {
-        try {
-            return localStorage.getItem(key);
-        } catch (e) {
-            return Object.prototype.hasOwnProperty.call(memoryFallback, key) ? memoryFallback[key] : null;
+if (savedSleepData) {
+    weeklySleepData = JSON.parse(savedSleepData);
+}
+let savedTarget = localStorage.getItem("sleepTarget");
+
+if (savedTarget) {
+    sleepTarget = Number(savedTarget);
+    targetSleep.value = sleepTarget;
+    targetDisplay.textContent = sleepTarget;
+}
+
+let savedActualSleep = localStorage.getItem("actualSleepHours");
+
+if (savedActualSleep && sleepTarget > 0) {
+
+    actualSleepHours = Number(savedActualSleep);
+
+    actualSleep.value = actualSleepHours;
+    sleptHoursDisplay.textContent = actualSleepHours;
+
+    let sleepPercentage =
+        (actualSleepHours / sleepTarget) * 100;
+
+    sleepPercentageDisplay.textContent =
+        Math.round(sleepPercentage) + "%";
+
+    let remainingHours =
+        sleepTarget - actualSleepHours;
+
+    if (remainingHours < 0) {
+        remainingHours = 0;
+    }
+
+    remainingHoursDisplay.textContent = remainingHours;
+
+
+    if (actualSleepHours >= sleepTarget) {
+
+        qualityMessage.textContent =
+            "Excellent! You completed today's sleep target.";
+
+    } else if (sleepTarget - actualSleepHours < 2) {
+
+        qualityMessage.textContent =
+            "Average. You are close to your sleep target, but need a little more rest.";
+
+    } else {
+
+        qualityMessage.textContent =
+            "You need more rest. Try to get closer to your sleep target.";
+    }
+}
+
+function drawSleepGraph() {
+
+    sleepGraph.width = sleepGraph.clientWidth;
+    sleepGraph.height = sleepGraph.clientHeight;
+
+    ctx.clearRect(0, 0, sleepGraph.width, sleepGraph.height);
+
+    const days = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+    ];
+
+    const maxHours = 10;
+
+
+    ctx.font = "12px Arial";
+    ctx.textAlign = "center";
+
+    for (let hour = 0; hour <= 10; hour += 2) {
+
+    let y = sleepGraph.height - 30 -
+            (hour / maxHours) *
+            (sleepGraph.height - 50);
+
+    ctx.fillText(hour, 20, y + 4);
+}
+
+    days.forEach(function(day, index) {
+
+        let x = 50 + index * ((sleepGraph.width - 70) / 6);
+
+        ctx.fillText(
+            day.substring(0, 3),
+            x,
+            sleepGraph.height - 10
+        );
+
+    });
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        40,
+        sleepGraph.height - 30
+    );
+
+    ctx.lineTo(
+        sleepGraph.width - 20,
+        sleepGraph.height - 30
+    );
+
+    ctx.stroke();
+
+    ctx.beginPath();
+
+    let firstPoint = true;
+
+    days.forEach(function(day, index) {
+
+        if (weeklySleepData[day] !== undefined) {
+
+            let x =50 + index * ((sleepGraph.width - 70) / 6);
+
+                
+            let y =sleepGraph.height - 30 -
+                (weeklySleepData[day] / maxHours) *
+                (sleepGraph.height - 50);
+                
+
+
+            if (firstPoint) {
+
+                ctx.moveTo(x, y);
+
+                firstPoint = false;
+
+            } else {
+
+                ctx.lineTo(x, y);
+
+            }
+
         }
-    }
 
-    function safeSetItem(key, value) {
-        try {
-            localStorage.setItem(key, value);
-        } catch (e) {
-            memoryFallback[key] = value;
-        }
-    }
+    });
 
-    function loadRecords() {
-        try {
-            const saved = safeGetItem(RECORDS_KEY);
-            return saved ? JSON.parse(saved) : {};
-        } catch (e) {
-            return {};
-        }
-    }
+    ctx.stroke();
 
-    function saveRecords(records) {
-        safeSetItem(RECORDS_KEY, JSON.stringify(records));
-    }
 
-    function loadTarget() {
-        try {
-            const saved = safeGetItem(TARGET_KEY);
-            return saved ? parseFloat(saved) : null;
-        } catch (e) {
-            return null;
-        }
-    }
+    days.forEach(function(day, index) {
 
-    function saveTarget(value) {
-        safeSetItem(TARGET_KEY, String(value));
-    }
+        if (weeklySleepData[day] !== undefined) {
 
-    function formatDateKey(date) {
-        const y = date.getFullYear();
-        const m = String(date.getMonth() + 1).padStart(2, '0');
-        const d = String(date.getDate()).padStart(2, '0');
-        return `${y}-${m}-${d}`;
-    }
+            let x =
+                50 + index * ((sleepGraph.width - 70) / 6);
 
-    function getCurrentWeekDates() {
-        const today = new Date();
-        const dayIndex = (today.getDay() + 6) % 7;
-        const monday = new Date(today);
-        monday.setDate(today.getDate() - dayIndex);
+            let y =
+                sleepGraph.height - 30 -
+                (weeklySleepData[day] / maxHours) *
+                (sleepGraph.height - 50);
 
-        const dates = [];
-        for (let i = 0; i < 7; i++) {
-            const d = new Date(monday);
-            d.setDate(monday.getDate() + i);
-            dates.push(d);
-        }
-        return dates;
-    }
 
-    function formatHours(hours) {
-        if (hours === null || hours === undefined) return '--';
-        const h = Math.floor(hours);
-        const m = Math.round((hours - h) * 60);
-        return m > 0 ? `${h}h ${m}m` : `${h}h`;
-    }
-
-    let records = loadRecords();
-    let target = loadTarget();
-
-    function renderToday() {
-        const todayKey = formatDateKey(new Date());
-        const todayRecord = records[todayKey];
-        if (todayRecord) {
-            todaySleepDisplay.textContent = `You slept ${formatHours(todayRecord.hours)} today`;
-        } else {
-            todaySleepDisplay.textContent = 'No sleep logged for today yet';
-        }
-    }
-
-    function renderTarget() {
-        if (target !== null) {
-            targetDisplay.textContent = `Your target is ${formatHours(target)} per night`;
-        } else {
-            targetDisplay.textContent = 'No target set yet';
-        }
-    }
-
-    function getWeekData() {
-        const weekDates = getCurrentWeekDates();
-        return weekDates.map(date => {
-            const key = formatDateKey(date);
-            const record = records[key];
-            return {
-                label: DAY_LABELS[(date.getDay() + 6) % 7],
-                hours: record ? record.hours : 0,
-                logged: !!record
-            };
-        });
-    }
-
-    function drawChart() {
-        const weekData = getWeekData();
-        const dpr = window.devicePixelRatio || 1;
-        const rect = canvas.getBoundingClientRect();
-        canvas.width = rect.width * dpr;
-        canvas.height = rect.height * dpr;
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
-        ctx.scale(dpr, dpr);
-
-        const width = rect.width;
-        const height = rect.height;
-        ctx.clearRect(0, 0, width, height);
-
-        const maxHours = Math.max(target || 0, ...weekData.map(d => d.hours), 8);
-        const chartTop = 15;
-        const chartBottom = height - 30;
-        const chartHeight = chartBottom - chartTop;
-        const barAreaWidth = width / weekData.length;
-        const barWidth = barAreaWidth * 0.45;
-
-        ctx.strokeStyle = 'rgba(255,255,255,0.3)';
-        ctx.lineWidth = 1;
-        for (let i = 0; i <= 4; i++) {
-            const y = chartTop + (chartHeight / 4) * i;
             ctx.beginPath();
-            ctx.moveTo(0, y);
-            ctx.lineTo(width, y);
-            ctx.stroke();
-        }
 
-        if (target) {
-            const targetY = chartBottom - (target / maxHours) * chartHeight;
-            ctx.strokeStyle = 'rgba(255,255,255,0.9)';
-            ctx.setLineDash([5, 4]);
-            ctx.beginPath();
-            ctx.moveTo(0, targetY);
-            ctx.lineTo(width, targetY);
-            ctx.stroke();
-            ctx.setLineDash([]);
-        }
+            ctx.arc(x, y, 5, 0, Math.PI * 2);
 
-        weekData.forEach((d, i) => {
-            const barHeight = (d.hours / maxHours) * chartHeight;
-            const x = i * barAreaWidth + (barAreaWidth - barWidth) / 2;
-            const y = chartBottom - barHeight;
-
-            ctx.fillStyle = d.logged ? '#FFFFFF' : 'rgba(255,255,255,0.25)';
-            ctx.beginPath();
-            const radius = 6;
-            ctx.moveTo(x, y + barHeight);
-            ctx.lineTo(x, y + radius);
-            ctx.arcTo(x, y, x + radius, y, radius);
-            ctx.lineTo(x + barWidth - radius, y);
-            ctx.arcTo(x + barWidth, y, x + barWidth, y + radius, radius);
-            ctx.lineTo(x + barWidth, y + barHeight);
-            ctx.closePath();
             ctx.fill();
 
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText(d.label, x + barWidth / 2, chartBottom + 18);
-
-            if (d.logged) {
-                ctx.fillText(formatHours(d.hours), x + barWidth / 2, y - 6);
-            }
-        });
-    }
-
-    function renderMetrics() {
-        const weekData = getWeekData().filter(d => d.logged);
-
-        if (weekData.length === 0) {
-            avgScoreEl.textContent = '--';
-            avgDeepSleepEl.textContent = '--';
-            avgEfficiencyEl.textContent = '--';
-            avgTimeInBedEl.textContent = '--';
-            qualityLabel.textContent = 'NO DATA';
-            qualityMsg.textContent = 'Log your sleep this week to see your quality report';
-            qualityBox.classList.remove('good', 'bad');
-            return;
         }
 
-        const totalHours = weekData.reduce((sum, d) => sum + d.hours, 0);
-        const avgHours = totalHours / weekData.length;
-        const goalHours = target || 8;
+    });
 
-        const score = Math.min(100, Math.round((avgHours / goalHours) * 100));
-        const deepSleep = avgHours * 0.22;
-        const efficiency = Math.min(100, Math.round((avgHours / goalHours) * 95));
-        const timeInBed = avgHours * 1.08;
+}
 
-        avgScoreEl.textContent = `${score}/100`;
-        avgDeepSleepEl.textContent = formatHours(deepSleep);
-        avgEfficiencyEl.textContent = `${efficiency}%`;
-        avgTimeInBedEl.textContent = formatHours(timeInBed);
+drawSleepGraph();
 
-        if (avgHours >= goalHours * 0.9) {
-            qualityLabel.textContent = 'GOOD';
-            qualityMsg.textContent = 'Great work! Keep maintaining this sleep schedule';
-            qualityBox.classList.add('good');
-            qualityBox.classList.remove('bad');
-        } else {
-            qualityLabel.textContent = 'NEEDS IMPROVEMENT';
-            qualityMsg.textContent = 'Try to go to bed a little earlier for better results';
-            qualityBox.classList.add('bad');
-            qualityBox.classList.remove('good');
-        }
+
+setTargetBtn.addEventListener("click",function(){
+    sleepTarget = Number(targetSleep.value);
+    targetDisplay.textContent = sleepTarget;
+
+    localStorage.setItem("sleepTarget", sleepTarget);
+
+    drawSleepGraph();
+})
+
+
+
+enterSleepBtn.addEventListener("click", function() {
+
+    if (sleepTarget === 0) {
+    alert("Please set your sleep target first.");
+    return;
     }
 
-    function renderAll() {
-        renderToday();
-        renderTarget();
-        drawChart();
-        renderMetrics();
+    actualSleepHours = Number(actualSleep.value);
+
+    localStorage.setItem("actualSleepHours", actualSleepHours);
+
+    let today = new Date();
+    let day = today.toLocaleDateString("en-US", { weekday: "long" });
+    weeklySleepData[day] = actualSleepHours;
+
+    localStorage.setItem("weeklySleepData", JSON.stringify(weeklySleepData));
+
+    sleptHoursDisplay.textContent = actualSleepHours;
+    let sleepPercentage = (actualSleepHours / sleepTarget) * 100;
+    sleepPercentageDisplay.textContent = Math.round(sleepPercentage) + "%";
+    let remainingHours = sleepTarget - actualSleepHours;
+
+     if (remainingHours < 0) {
+     remainingHours = 0;
+     }
+
+    remainingHoursDisplay.textContent = remainingHours;
+
+    if (actualSleepHours >= sleepTarget) {
+    qualityMessage.textContent = "Excellent! You completed today's sleep target.";
+    }
+    else if (sleepTarget - actualSleepHours < 2) {
+    qualityMessage.textContent = "Average. You are close to your sleep target, but need a little more rest.";
+    } 
+    else {
+    qualityMessage.textContent = "You need more rest. Try to get closer to your sleep target.";
     }
 
-    logSleepBtn.addEventListener('click', () => {
-        const hours = parseFloat(sleepHoursInput.value) || 0;
-        const minutes = parseFloat(sleepMinutesInput.value) || 0;
-        if (hours === 0 && minutes === 0) return;
+    drawSleepGraph();
 
-        const totalHours = hours + (minutes / 60);
-        const todayKey = formatDateKey(new Date());
-        records[todayKey] = { hours: totalHours };
-        saveRecords(records);
-
-        sleepHoursInput.value = '';
-        sleepMinutesInput.value = '';
-        renderAll();
-    });
-
-    setTargetBtn.addEventListener('click', () => {
-        const value = parseFloat(targetHoursInput.value);
-        if (!value || value <= 0) return;
-        target = value;
-        saveTarget(target);
-        targetHoursInput.value = '';
-        renderAll();
-    });
-
-    document.querySelectorAll('.option-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-            document.querySelectorAll('.option-tab').forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-        });
-    });
-
-    window.addEventListener('resize', drawChart);
-
-    renderAll();
 });
+
+
+
