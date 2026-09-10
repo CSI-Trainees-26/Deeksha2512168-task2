@@ -18,8 +18,9 @@ body{
     min-height: 99vh;
     background: whitesmoke;
     top: 0;
-    height: 0;
+    left: 0;
     position: fixed;
+    z-index: 1000;
 }
 
 .main-content {
@@ -115,12 +116,14 @@ body{
     border-radius: 20px;
     padding: 10px;
     margin-bottom: 25px;
+    height: auto;
 }
 
 .habit2{
     background:#e3e7ee;
     width: 100%;
-    height: 80px;
+    height: auto;
+    min-height: 80px;
     border-radius: 20px;
     padding: 10px;
     margin-bottom: 25px;
@@ -183,14 +186,90 @@ body{
     align-items: center;
 }
 
-.arrow-btn {
+.arrow-btn1{
     border: none;
     background: none;
     font-size: 20px;
     cursor: pointer;
 }
 
-.habit-content {
+.habit-content1 {
     display: none;
     margin-top: 15px;
+}
+.arrow-btn2{
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.habit-content2 {
+    display: none;
+    margin-top: 15px;
+}
+.arrow-btn3{
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.habit-content3 {
+    display: none;
+    margin-top: 15px;
+}
+.arrow-btn4{
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.habit-content4 {
+    display: none;
+    margin-top: 15px;
+}
+.arrow-btn5{
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.habit-content5{
+    display: none;
+    margin-top: 15px;
+}
+
+.days {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    flex-direction: row;
+}
+
+.day-btn {
+    padding: 10px 5px;
+    border: 1px solid #555;
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+    
+}
+
+.day-btn.completed {
+    background: black;
+    color: white;
+}
+
+#meditationProgress {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#meditationMessage {
+    margin-top: 10px;
 }
