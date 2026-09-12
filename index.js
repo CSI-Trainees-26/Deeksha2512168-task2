@@ -14,13 +14,29 @@ const dailyTasks =  JSON.parse(localStorage.getItem("dailyTasks")) || [];
 const completedTasks =  dailyTasks.filter(task => task.status === "completed").length;
 
 const habitProgressText = document.getElementById("habitProgressText");
-const meditationProgress =  JSON.parse(localStorage.getItem("meditationProgress")) || [];
 
-const completedHabitDays = meditationProgress.length;
+const meditationProgress =
+    JSON.parse(localStorage.getItem("meditationProgress")) || [];
 
-// habitProgressText.textContent = "Habits: " + completedHabitDays + " completed";
+const runningProgress =
+    JSON.parse(localStorage.getItem("runningHabitProgress")) || [];
 
-// taskProgressText.textContent = "Daily Tasks: " + completedTasks + " completed";
+const yogaProgress =
+    JSON.parse(localStorage.getItem("yogaHabitProgress")) || [];
+
+const waterHabitProgress =
+    JSON.parse(localStorage.getItem("waterHabitProgress")) || [];
+
+const sleepHabitProgress =
+    JSON.parse(localStorage.getItem("sleepHabitProgress")) || [];
+
+
+const completedHabitDays =
+    meditationProgress.length +
+    runningProgress.length +
+    yogaProgress.length +
+    waterHabitProgress.length +
+    sleepHabitProgress.length;
 
 if (habitProgressText) {
     habitProgressText.textContent = "Habits: " + completedHabitDays + " completed";
@@ -157,36 +173,70 @@ saveQuoteBtn.addEventListener("click", function() {
 
 const chartCanvas = document.getElementById("monthlyProgressChart");
 
-const recapData = {
-    tasks: completedTasks,
-    meditation: meditationProgress.length,
-    water: todayWater,
-    sleep: Number(localStorage.getItem("actualSleepHours") || 0)
-};
+const sleepHours = Number(localStorage.getItem("actualSleepHours") || 0);
+
+const taskPercentage =
+    dailyTasks.length > 0
+        ? (completedTasks / dailyTasks.length) * 100
+        : 0;
+
+const habitPercentage =
+    (completedHabitDays / 35) * 100;
+
+const waterPercentage =
+    Math.min((todayWater / 2500) * 100, 100);
+
+const sleepPercentage =
+    Math.min((sleepHours / 8) * 100, 100);
+
 new Chart(chartCanvas, {
     type: "bar",
 
     data: {
         labels: [
             "Daily Tasks",
-            "Meditation",
+            "Habits",
             "Water",
             "Sleep"
         ],
 
         datasets: [{
-            label: "Completed",
+            label: "Progress %",
             data: [
-                recapData.tasks,
-                recapData.meditation,
-                recapData.water,
-                recapData.sleep
+                taskPercentage,
+                habitPercentage,
+                waterPercentage,
+                sleepPercentage
             ]
         }]
     },
 
     options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100,
+
+                ticks: {
+                    callback: function(value) {
+                        return value + "%";
+                    }
+                }
+            }
+        },
+
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return "Progress: " +
+                            Math.round(context.raw) + "%";
+                    }
+                }
+            }
+        }
     }
 });
