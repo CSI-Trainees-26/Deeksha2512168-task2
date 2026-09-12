@@ -18,9 +18,17 @@ const meditationProgress =  JSON.parse(localStorage.getItem("meditationProgress"
 
 const completedHabitDays = meditationProgress.length;
 
-habitProgressText.textContent = "Habits: " + completedHabitDays + " completed";
+// habitProgressText.textContent = "Habits: " + completedHabitDays + " completed";
 
-taskProgressText.textContent = "Daily Tasks: " + completedTasks + " completed";
+// taskProgressText.textContent = "Daily Tasks: " + completedTasks + " completed";
+
+if (habitProgressText) {
+    habitProgressText.textContent = "Habits: " + completedHabitDays + " completed";
+}
+
+if (taskProgressText) {
+    taskProgressText.textContent = "Daily Tasks: " + completedTasks + " completed";
+}
 
 let seconds = 0;
 let timerInterval = null;
@@ -88,15 +96,13 @@ const savedCalories =  localStorage.getItem("todayCalories");
 
 if (savedCalories !== null) {
 
-    calorieTodayText.textContent =
-        savedCalories + " kcal today";
+    calorieTodayText.textContent = savedCalories + " kcal today";
 
 }
 
 const waterTodayText = document.getElementById("waterTodayText");
 
-const waterRecords =
-    JSON.parse(localStorage.getItem("waterRecords")) || {};
+const waterRecords = JSON.parse(localStorage.getItem("waterRecords")) || {};
 
 const today = new Date();
 
@@ -113,8 +119,7 @@ const sleepSummaryText = document.getElementById("sleepSummaryText");
 const savedSleep = localStorage.getItem("actualSleepHours");
 
 if (savedSleep !== null) {
-    sleepSummaryText.textContent =
-        savedSleep + " hours slept today";
+    sleepSummaryText.textContent =  savedSleep + " hours slept today";
 }
 
 const quotes = [
