@@ -23,11 +23,20 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 70px;
-    :hover{
-        background-color: #CFEBFF;
-    }
-  
+    gap: 50px;
+}
+
+.logodescription {
+ margin-left: 25px  ;
+}
+.nav a {
+    padding: 10px 35px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.nav a:hover {
+    background-color: #d1c1c1;
 }
 
 .sidebar a {
@@ -82,7 +91,7 @@ padding: 10px;
 
 .report{
  display: flex;
- height: 400px;
+ height: 320px;
  width: 100%;
 }
 
@@ -90,7 +99,7 @@ padding: 10px;
     background:#BFECFF ;
     border-radius: 10px;
     height: 300px;
-    width: 500px;
+    width: 50%;
     padding: 10px;
     margin-top: 20px;
 }
@@ -100,7 +109,7 @@ padding: 10px;
     margin-left: 20px;
     border-radius: 10px;
     padding: 10px;
-    width:500px ;
+    width:50% ;
     height: 300px;
     margin-top: 20px;
 }
@@ -210,4 +219,14 @@ padding: 10px;
  font-size: 25px;
  margin-bottom: 5px;
  margin-top: 20px;
+}
+
+#todayIntakeValue{
+    margin-top: 50px ;
+    margin-bottom: 50px;
+}
+
+#goalText{
+    font-size: 25px;
+    font-weight: 500;
 }

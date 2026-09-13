@@ -32,7 +32,10 @@
                 <img src="https://healthicons.org/icons/svg/outline/devices/blood-pressure.svg" alt="health tracker logo" class="logo-icon">
              <h1>Health Tracker</h1>
             </div>
-            <p>Better Habit , Better YOU</p>
+            <div class="logodescription">
+              <p>Better Habit , Better YOU</p>
+            </div>
+            
            </div>
             <a href="#"><img src="https://static.vecteezy.com/system/resources/previews/012/528/164/non_2x/home-icon-house-icon-illustration-perfect-for-all-project-vector.jpg" alt="dash-icon" class="nav-icon">Dashboard</a>
             <a href="dailytask.html"> <img src="https://cdn-icons-png.flaticon.com/512/233/233146.png" alt="dash-icon" class="nav-icon">Daily Tasks</a>
@@ -46,26 +49,16 @@
 
        <main class=" main-content">
           
-            <section class=" progress-report ">
+            <div class="top-cards">
+              <div class=" progress-report ">
                 <h2> Overall Progress </h2>
                 <div class="progress-circle">
                    <span id="overallPercentage">0%</span>
                     <p id="currentDate"></p>
                </div>
-                
-            </section>
+              </div>
 
-            <div class="cards">
-
-             <div class="habit-progress">
-                <h3>My Activity Recaps</h3>
-                <p>Everything you have completed </p>
-                <div class="chart-container">
-                    <canvas id="monthlyProgressChart"></canvas>
-                </div>
-             </div>
-
-             <div class="right-cards">
+              <div class="right-cards">
 
                  <div class="water-intake">
                    <h1>💧Water Intake</h1>
@@ -84,22 +77,24 @@
                     <p id="calorieTodayText">0 calorie today</p>
                   </div>
              </div>
-
             </div>
 
-            <section class="quotes">
-                <h1> Motivational Quotes</h1>
-                <p id="quoteText"></p>
+            <div class="cards">
 
-               <button id="saveQuoteBtn">Save Quote</button>
-            </section>
+             <div class="middle">
+                <div class="habit-progress">
+                    <h3>My Activity Recaps</h3>
+                    <p>Everything you have completed </p>
+                 <div class="chart-container">
+                    <canvas id="monthlyProgressChart"></canvas>
+                 </div>
+               </div>
+                <div class="cards2">
 
-            <div class="cards2">
-
-                <div class="sleep">
-                  <h1>Sleep Quality</h1>
-                  <p id="sleepSummaryText">No sleep data yet</p>
-                </div>
+                    <div class="sleep">
+                      <h1>Sleep Quality</h1>
+                      <h1 id="sleepSummaryText">No sleep data yet</h1>
+                    </div>
 
                 <div class="timer">
                     <h1> Set Timer</h1>
@@ -113,6 +108,16 @@
                 </div>
 
             </div>
+             </div>
+
+            </div>
+
+            <section class="quotes">
+                <h1> Motivational Quotes</h1>
+                <p id="quoteText"></p>
+
+               <button id="saveQuoteBtn">Save Quote</button>
+            </section>
 
         </main>
     

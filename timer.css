@@ -23,11 +23,21 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 70px;
-    :hover{
-        background-color: #CFEBFF;
-    }
-  
+    gap: 50px;
+}
+
+.logodescription {
+ margin-left: 25px  ;
+}
+
+.nav a {
+    padding: 10px 35px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.nav a:hover {
+    background-color: #d1c1c1;
 }
 
 .sidebar a {
@@ -58,7 +68,7 @@ body {
 }
 
 .head{
-    background: #696FC7;
+    background: #EA7B7B;
     border-radius: 20px;
     padding: 30px;
     height: 150px;
@@ -66,7 +76,7 @@ body {
 }
 
 .pomo{
-    background: #A7AAE1;
+    background: #F5AFAF;
     padding: 20px;
     border-radius: 10px;
     height: 400px;
@@ -151,6 +161,13 @@ body {
     justify-content: center;
     gap: 20px;
     margin-top: 30px;
+}
+
+#startBtn,
+#pauseBtn,
+#resetBtn{
+    background-color: #EA7B7B;
+    border-color: black;
 }
 
 .timer-buttons button {

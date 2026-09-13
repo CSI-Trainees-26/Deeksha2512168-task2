@@ -23,11 +23,20 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 70px;
-    :hover{
-        background-color: #CFEBFF;
-    }
-  
+    gap: 50px;
+}
+
+.logodescription {
+ margin-left: 25px  ;
+}
+.nav a {
+    padding: 10px 35px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.nav a:hover {
+    background-color: #d1c1c1;
 }
 
 .sidebar a {
@@ -271,4 +280,32 @@ body {
 #sleepGraph {
     width: 100%;
     height: 100%;
+}
+
+#sleep-percentage {
+    font-size: 55px;
+    font-weight: 700;
+    margin: 20px 0;
+    margin-top: 60px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.details p {
+    font-size: 22px;
+    margin: 10px 0;
+}
+
+.details p:first-of-type {
+    margin-top: auto;
+}
+
+#quality-message{
+    margin-top: 50px;
+    font-size: 35px;
+    font-weight: 500;
 }
