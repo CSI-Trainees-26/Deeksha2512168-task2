@@ -47,5 +47,3 @@ sss
 
     timerDisplay.textContent = "00:00";
 });
-
-

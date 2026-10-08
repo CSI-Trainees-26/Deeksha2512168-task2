@@ -40,6 +40,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const arrowBtn4 = document.getElementById("arrowBtn4");
     const habitContent4 = document.getElementById("habitContent4");
 
+    
+
     arrowBtn4.addEventListener("click", function () {
         if (habitContent4.style.display === "block") {
             habitContent4.style.display = "none";
